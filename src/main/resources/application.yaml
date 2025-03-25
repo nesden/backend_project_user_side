@@ -17,10 +17,10 @@ spring:
     console:
       enabled: true
 
-#external-api:
-#  tvmaze:
-#    name: "tvmaze-api"
-#    url: "https://api.tvmaze.com"
+external-api:
+  question:
+    name: "question-api"
+    url: "http://localhost:8081"
 #  lastfm:
 #    name: "lastfm-api"
 #    url: "http://ws.audioscrobbler.com/2.0"

@@ -62,4 +62,14 @@ public class UserRepository {
             return null;
         }
     }
+//    public String answer(Answer answer){
+//        try {
+//            String sql="INSERT INTO users (first_name, last_name, email,age,address) VALUES(?,?,?,?,?)";
+//            jdbcTemplate.update(sql,user.getFirstName(),user.getLastName(),user.getEmail(),user.getAge(),user.getAddress());
+//            return getByEmailHelper(user.getEmail());
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//            return null;
+//        }
+//    }
 }

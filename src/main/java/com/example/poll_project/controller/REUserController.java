@@ -68,4 +68,18 @@ public class REUserController {
         }
     }
 
+    /// //
+//    @PostMapping("/answer")
+//    public ResponseEntity<String> answerQuestion(@RequestBody Answer answer){
+//        try{
+//            Answer savedAnswer=userService.saveAnswer(answer);
+//            if (savedAnswer!=null){
+//                return new ResponseEntity<>(savedAnswer, HttpStatus.CREATED);
+//            }
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//
+//        }catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 }
