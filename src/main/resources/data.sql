@@ -19,9 +19,3 @@ PRIMARY KEY (id)
 --PRIMARY KEY (id)
 --);
 --
---CREATE TABLE user_to_question(
---user_id INT NOT NULL,
---question id INT NOT NULL,
---FOREIGN KEY (question_id) REFERENCES id(question),
---FOREIGN KEY (user_id) REFERENCES id(user)
---)

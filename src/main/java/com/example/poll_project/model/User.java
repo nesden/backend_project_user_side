@@ -1,10 +1,8 @@
 package com.example.poll_project.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class User {
     private int id;

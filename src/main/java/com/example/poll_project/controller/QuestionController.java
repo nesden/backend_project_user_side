@@ -2,8 +2,6 @@ package com.example.poll_project.controller;
 
 
 import com.example.poll_project.model.Question;
-import com.example.poll_project.model.QuestionResponse;
-import com.example.poll_project.model.User;
 import com.example.poll_project.question.QuestionClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +20,9 @@ public class QuestionController {
     public QuestionController(QuestionClient questionClient) {
         this.questionClient = questionClient;
     }
+
+    //add crud. mostly delete
+
     @GetMapping("/{questionId}")
         public ResponseEntity<Question> getQuestionById(@PathVariable int questionId){
 
