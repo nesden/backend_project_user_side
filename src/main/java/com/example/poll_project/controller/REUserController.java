@@ -1,6 +1,7 @@
 package com.example.poll_project.controller;
 
 
+import com.example.poll_project.answer.AnswerClient;
 import com.example.poll_project.model.Answer;
 import com.example.poll_project.model.User;
 import com.example.poll_project.service.UserService;
@@ -15,6 +16,8 @@ public class REUserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AnswerClient answerClient;
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -45,6 +48,8 @@ public class REUserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable int id) {
         try {
+
+            // add here to call the delete answer functions from the question backend
             String result = userService.deleteById(id);
             if (result.contains("successfully")) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
