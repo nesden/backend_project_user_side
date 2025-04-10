@@ -17,9 +17,9 @@ public class AnswerController {
 
 
     @DeleteMapping("/questions-by-user/{userId}")
-    public ResponseEntity<String> deleteAnswersByUserId(@PathVariable int userId) {
+    public ResponseEntity<String> deleteAllAnswersByUserId(@PathVariable int userId) {
         try {
-            return answerClient.deleteAnswersByUserId(userId);
+            return answerClient.deleteAllAnswersByUserId(userId);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

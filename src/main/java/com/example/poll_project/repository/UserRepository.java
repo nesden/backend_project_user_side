@@ -1,5 +1,6 @@
 package com.example.poll_project.repository;
 
+import com.example.poll_project.answer.AnswerClient;
 import com.example.poll_project.model.User;
 import com.example.poll_project.repository.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,30 +12,35 @@ public class UserRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private AnswerClient answerClient;
 
-    public User save(User user){
+    public User save(User user) {
         try {
-            String sql="INSERT INTO users (first_name, last_name, email,age,address) VALUES(?,?,?,?,?)";
-            jdbcTemplate.update(sql,user.getFirstName(),user.getLastName(),user.getEmail(),user.getAge(),user.getAddress());
+            String sql = "INSERT INTO users (first_name, last_name, email,age,address) VALUES(?,?,?,?,?)";
+            jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAge(), user.getAddress());
             return getByEmailHelper(user.getEmail());
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
+
     public User update(User user) {
         try {
             String sql = "UPDATE users SET first_name= ?, last_name= ?, email= ?, age=?, address=?,joining_date=? WHERE id= ?";
-            jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(),user.getAge(),user.getAddress(),user.getJoiningDate(), user.getId());
+            jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAge(), user.getAddress(), user.getJoiningDate(), user.getId());
             return getById(user.getId());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
+
     public String deleteById(int id) {
         try {
             String sql = "DELETE FROM users WHERE id= ?";
+            answerClient.deleteAllAnswersByUserId(id);
             jdbcTemplate.update(sql, id);
             return "the user with id " + id + " deleted successfully";
         } catch (Exception e) {
@@ -53,23 +59,24 @@ public class UserRepository {
 
     }
 
-    public User getByEmailHelper(String email){
+    public User getByEmailHelper(String email) {
         try {
-            String sql="SELECT * FROM users WHERE email = ?";
-            return jdbcTemplate.queryForObject(sql,new UserMapper(),email);
-        }catch (Exception e){
+            String sql = "SELECT * FROM users WHERE email = ?";
+            return jdbcTemplate.queryForObject(sql, new UserMapper(), email);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
-//    public String answer(Answer answer){
-//        try {
-//            String sql="INSERT INTO users (first_name, last_name, email,age,address) VALUES(?,?,?,?,?)";
-//            jdbcTemplate.update(sql,user.getFirstName(),user.getLastName(),user.getEmail(),user.getAge(),user.getAddress());
-//            return getByEmailHelper(user.getEmail());
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//    }
+
+    public String deleteAllAnswersByUserIdHelper(int id) {///  make it work
+        try {
+            String sql = "DELETE FROM answer WHERE user_id= ?";
+            jdbcTemplate.update(sql, id);
+            return "the answers made by user " + id + " deleted successfully";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+
+    }
 }
