@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserRepository {
 
@@ -58,6 +60,16 @@ public class UserRepository {
         }
 
     }
+    public List<User> getUsers() {
+        try {
+            String sql = "SELECT * FROM users";
+            return jdbcTemplate.query(sql, new UserMapper());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+    }
 
     public User getByEmailHelper(String email) {
         try {
@@ -67,16 +79,5 @@ public class UserRepository {
             System.out.println(e.getMessage());
             return null;
         }
-    }
-
-    public String deleteAllAnswersByUserIdHelper(int id) {///  make it work
-        try {
-            String sql = "DELETE FROM answer WHERE user_id= ?";
-            jdbcTemplate.update(sql, id);
-            return "the answers made by user " + id + " deleted successfully";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-
     }
 }

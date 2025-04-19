@@ -24,23 +24,3 @@ external-api:
   answer:
     name: "answer-api"
     url: "http://localhost:8081"
-#  lastfm:
-#    name: "lastfm-api"
-#    url: "http://ws.audioscrobbler.com/2.0"
-
-# MySQL configuration
-#server:
-#  port: 8080
-#spring:
-#  main:
-#    allow-circular-references: true
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/l50_23_02_db?serverTimezone=UTC
-#    username: root
-#    password: 424614@picollo
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#  jpa:
-#    database-platform: org.hibernate.dialect.MySQL8Dialect
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true

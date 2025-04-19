@@ -11,5 +11,4 @@ public class PollProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PollProjectApplication.class, args);
 	}
-
 }

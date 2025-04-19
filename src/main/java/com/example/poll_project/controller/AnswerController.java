@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AnswerController {
     @Autowired
     private AnswerClient answerClient;
-
-
-    @DeleteMapping("/questions-by-user/{userId}")
-    public ResponseEntity<String> deleteAllAnswersByUserId(@PathVariable int userId) {
+    @DeleteMapping("/delete-all-answers-by-user/{Id}")
+    public ResponseEntity<String> deleteAllAnswersByUserId(@PathVariable int Id) {
         try {
-            return answerClient.deleteAllAnswersByUserId(userId);
+            return answerClient.deleteAllAnswersByUserId(Id);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
